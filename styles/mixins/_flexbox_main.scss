@@ -12,7 +12,7 @@ $flex-map: (
 }
 
 @mixin flexbox($jc: center, $ai: center) {
-  display: flex;
+  display: block;
   align-items: _get-flex-value($ai);
   justify-content: _get-flex-value($jc);
 }
