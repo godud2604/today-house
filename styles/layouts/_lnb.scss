@@ -1,22 +1,27 @@
 .lnb {
-  overflow-x: auto;
+  $lnb-link-padding: 8px;
+  $grid-margin: $sm-margin + $gutter / 2;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include no-scrollbar;
+  overflow-x: auto;
 
   &-list {
     @include inline-flexbox(start);
-    position: relative;
-    left: -8px;
+    height: 40px;
+    padding: 0 #{$grid-margin - $lnb-link-padding};
+    margin-left: -#{$grid-margin};
     white-space: nowrap;
+    border-bottom: 1px solid $border;
+
+    // max-content와 min-content는 자신이 가지고 있는 자손의 사이즈가 특정 값으로 고정되지 않았을 때 의미있게 사용가능
+    // => max-content : ie X (호환성 이슈 발생)
   }
 
   &-item {
     &.is-active {
       a {
         color: $blue;
-        border-bottom: 2px solid $blue;
+        border-bottom-color: $blue;
       }
     }
 
@@ -24,12 +29,9 @@
       @include inline-flexbox;
       @include text-style(13, $dark);
       height: 40px;
-      padding: 0 8px;
+      padding: 0 $lnb-link-padding;
       font-weight: 700;
-    }
-
-    .ic-new {
-      color: $red;
+      border-bottom: 2px solid transparent;
     }
   }
 }
