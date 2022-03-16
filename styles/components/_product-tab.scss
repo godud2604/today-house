@@ -1,0 +1,66 @@
+.product-tab {
+  $grid-margin: $sm-margin + $gutter / 2;
+
+  width: 100%;
+  height: 40px;
+  background-color: $white;
+  border-bottom: 1px solid $border;
+
+  &-list {
+    @include flexbox;
+    margin: 0 -#{$grid-margin};
+  }
+
+  &-item {
+    width: (100% / 5);
+
+    &.is-active {
+      button {
+        color: $blue;
+        border-bottom-color: $blue;
+      }
+    }
+
+    button {
+      @include flexbox;
+      @include text-style(13, $dark);
+      width: 100%;
+      height: 40px;
+      font-weight: 700;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+
+      &:active {
+        color: $blue;
+      }
+    }
+
+    .badge {
+      margin-left: 4px;
+      color: $secondary;
+    }
+  }
+
+  @include responsive(T) {
+    height: 54px;
+    background-color: $background;
+    border-bottom: 0;
+
+    &-item {
+      button {
+        @include text-style(16);
+        height: 54px;
+      }
+
+      .badge {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  @include responsive(D) {
+    &-item button:hover {
+      color: $blue;
+    }
+  }
+}
