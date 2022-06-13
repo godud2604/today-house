@@ -1,6 +1,5 @@
 const orderCta = document.querySelector('.order-cta')
 const [orderCtaBookmarkButton, orderCtaBuyButton] = orderCta.children
-
 const orderModal = document.querySelector('.order-form-modal')
 const orderModalOverlay = document.querySelector('.overlay')
 
@@ -17,3 +16,23 @@ function closeOrderModal() {
 }
 
 orderModalOverlay.addEventListener('click', closeOrderModal)
+
+function toggleOrderCtaBookmark() {
+  const [icon, countSpan] = this.children
+  const count = Number(countSpan.textContent.replaceAll(',', ''))
+
+  let newCount = count
+  if (this.classList.contains('is-active')) {
+    icon.classList.replace('ic-bookmark-filled', 'ic-bookmark')
+    newCount--
+  } else {
+    icon.classList.replace('ic-bookmark', 'ic-bookmark-filled')
+    newCount++
+  }
+
+  countSpan.textContent = newCount.toLocaleString()
+  countSpan.setAttribute('aria-label', `북마크 ${newCount.toLocaleString()}회`)
+  this.classList.toggle('is-active')
+}
+
+orderCtaBookmarkButton.addEventListener('click', toggleOrderCtaBookmark)
