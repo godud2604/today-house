@@ -7,9 +7,6 @@
   padding: 12px 0;
   background-color: $white;
   transform: translate3d(100%, 0, 0);
-  // transition: width, height, padding, margin, border, top, right, bottom, left
-  // => 위의 요소를 transition이랑 같이 사용하는 것을 지양한다. (브라우저에 성능이 좋지 않다)
-  // 그러므로 tranlate3d를 사용하는 것이 효과적,
   transition: transform 300ms ease-in-out;
 
   &.is-active {

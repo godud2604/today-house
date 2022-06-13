@@ -13,11 +13,12 @@
   background-color: $white;
   transform: translate3d(-#{$sidebar-width}, 0, 0);
   transition: transform 300ms ease-in-out;
-  overscroll-behavior: contain; // 뒤에 있는 contents scroll 되는 현상 방지.
+  overscroll-behavior: contain;
 
   &.is-active {
     transform: translate3d(0, 0, 0);
   }
+
   &-header {
     padding: 0 12px;
 
@@ -58,10 +59,8 @@
     }
 
     .username {
+      @include truncate;
       flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
   }
 
