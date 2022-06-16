@@ -1,20 +1,6 @@
 const productTab = document.querySelector('.product-tab')
 const productTabButtonList = productTab.querySelectorAll('button')
-const productSpec = document.querySelector(
-  '#product-spec .product-section-content'
-)
-const productReview = document.querySelector(
-  '#product-review .product-section-content'
-)
-const productInquiry = document.querySelector(
-  '#product-inquiry .product-section-content'
-)
-const productShipment = document.querySelector(
-  '#product-shipment .product-section-content'
-)
-const productRecommendation = document.querySelector(
-  '#product-recommendation .product-section-content'
-)
+
 const TOP_HEADER_DESKTOP = 80 + 50 + 54
 const TOP_HEADER_MOBILE = 50 + 40 + 40
 
@@ -51,3 +37,29 @@ productTabButtonList.forEach((button) => {
   button.addEventListener('click', toggleActiveTab)
   button.addEventListener('click', scrollToTabPanel)
 })
+
+const productTabPanelIdList = [
+  'product-spec',
+  'product-review',
+  'product-inquiry',
+  'product-shipment',
+  'product-recommendation',
+]
+
+const productTabPanelList = productTabPanelIdList.map((panelId) => {
+  const tabPanel = document.querySelector(`#${panelId}`)
+  return tabPanel
+})
+
+const productTabPanelPositionMap = {}
+
+function detectTabPanelPosition() {
+  productTabPanelList.forEach((panel) => {
+    const id = panel.getAttribute('id')
+    const position = window.scrollY + panel.getBoundingClientRect().top
+    productTabPanelPositionMap[id] = position
+  })
+}
+
+window.addEventListener('load', detectTabPanelPosition)
+window.addEventListener('resize', detectTabPanelPosition)
