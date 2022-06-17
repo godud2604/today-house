@@ -66,7 +66,7 @@ function detectTabPanelPosition() {
 }
 
 function updateActiveTabOnScroll() {
-  // 이슈2: toggleActiveTab으로 이동 시에는 updateActiveTabOnScroll함수가 작동되지 않게 설정하여 오류 해결
+  // 이슈2: toggleActiveTab으로 이동 시에는 updateActiveTabOnScroll 함수가 작동되지 않게 설정하여 오류 해결
   if (disableUpdating) {
     return
   }
@@ -115,5 +115,7 @@ function updateActiveTabOnScroll() {
 
 window.addEventListener('load', detectTabPanelPosition)
 // 이슈 1. 추천 탭에 있을 때, 새로고침하면 상품정보 탭으로 가있음 => resize 이벤트 설정
-window.addEventListener('resize', detectTabPanelPosition)
-window.addEventListener('scroll', updateActiveTabOnScroll)
+// resize와 scroll 은 cost가 비싼 이벤트이다. 많이 실행되는 이벤트
+// => lodash cdn -> throttle 적용하여 성능 개선
+window.addEventListener('resize', _.throttle(detectTabPanelPosition, 1000))
+window.addEventListener('scroll', _.throttle(updateActiveTabOnScroll, 300))
