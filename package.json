@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "node-sass": "node-sass",
-    "sass": "node-sass -wr --source-map true styles/main.scss ./style.css"
+    "sass": "node-sass -wr --source-map true styles/main.scss ./style.css",
+    "sass:build": "node-sass -r --source-map true styles/main.scss ./style.css",
+    "build": "node ./scripts/build.js",
+    "deploy": "npm run sass:build && npm run build && node ./script/deploy.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,14 @@
   "homepage": "https://github.com/godud2604/today-house#readme",
   "dependencies": {
     "node-sass": "^7.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.11",
+    "fs-extra": "^10.1.0",
+    "gh-pages": "^4.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "postcss": "^8.4.14"
   }
 }
